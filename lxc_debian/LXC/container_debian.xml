@@ -1,0 +1,26 @@
+<domain type='lxc'>
+<name>container_debian</name>
+<memory unit='KiB'>4276800</memory>
+<vcpu placement='static'>1</vcpu>
+<os>
+ <type arch='x86_64'>exe</type>
+ <init>/lib/systemd/systemd</init>
+</os>
+<clock offset='utc'/>
+<on_poweroff>destroy</on_poweroff>
+<on_reboot>restart</on_reboot>
+<on_crash>destroy</on_crash>
+<devices>
+ <emulator>/usr/lib/libvirt/libvirt_lxc</emulator>
+ <filesystem type='mount' accessmode='passthrough'>
+ <source dir='/var/lib/lxc/container_debian/rootfs'/>
+ <target dir='/'/>
+ </filesystem>
+ <interface type='network'>
+ <source network='default'/>
+ </interface>
+ <console type='pty'>
+ <target type='lxc' port='0'/>
+ </console>
+</devices>
+</domain>
